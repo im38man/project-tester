@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hubungi Kami & Testimoni - Wanderlust Tour & Travel</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome untuk Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #fcfbf7;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a2f27;
+            letter-spacing: 1px;
+        }
+        .nav-right-container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+            color: #555;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #c5a880;
+        }
+        
+        .nav-socials {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            border-left: 1px solid #e5e0d8;
+            padding-left: 20px;
+        }
+        .nav-socials a {
+            color: #1a2f27;
+            font-size: 18px;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .nav-socials a:hover {
+            color: #c5a880;
+            transform: scale(1.15);
+        }
+
+        .btn-nav-book {
+            background-color: #1a2f27;
+            color: #fff !important;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-size: 13px;
+            transition: background 0.3s !important;
+        }
+        .btn-nav-book:hover {
+            background-color: #c5a880;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 22px;
+            color: #1a2f27;
+            cursor: pointer;
+        }
+
+        @media(max-width: 991px) {
+            .nav-right-container {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                padding: 30px;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+                gap: 20px;
+                border-top: 1px solid #f3eee7;
+            }
+            .nav-right-container.active {
+                display: flex;
+            }
+            .nav-links {
+                flex-direction: column;
+                gap: 20px;
+                width: 100%;
+                text-align: center;
+            }
+            .nav-socials {
+                border-left: none;
+                padding-left: 0;
+                border-top: 1px solid #f3eee7;
+                padding-top: 20px;
+                width: 100%;
+                justify-content: center;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        /* Header Section */
+        .page-header {
+            text-align: center;
+            padding: 60px 8% 30px 8%;
+            background: linear-gradient(rgba(26, 47, 39, 0.03), rgba(26, 47, 39, 0.00));
+        }
+        .section-subtitle {
+            color: #c5a880;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            color: #1a2f27;
+            margin-bottom: 15px;
+        }
+        .section-desc {
+            max-width: 650px;
+            margin: 0 auto;
+            color: #666;
+            font-weight: 300;
+            font-size: 15px;
+        }
+
+        /* Split Layout Container */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 4% 80px 4%;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 40px;
+        }
+        @media(max-width: 991px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Chat Box Styles */
+        .chat-section {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid #f3eee7;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+        }
+        .chat-header {
+            background-color: #1a2f27;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 3px solid #c5a880;
+        }
+        .admin-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #c5a880;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 600;
+            border: 2px solid #fff;
+            color: #1a2f27;
+        }
+        .admin-status {
+            display: flex;
+            flex-direction: column;
+        }
+        .admin-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .status-tag {
+            font-size: 11px;
+            color: rgba(255,255,255,0.7);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #4caf50;
+            display: inline-block;
+            animation: pulse-dot 1.5s infinite;
+        }
+        @keyframes pulse-dot {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 5px rgba(76, 175, 80, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            padding: 25px;
+            overflow-y: auto;
+            background-color: #faf9f6;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .message-bubble {
+            max-width: 80%;
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .message-admin {
+            background-color: #ffffff;
+            color: #333;
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            border: 1px solid #f3eee7;
+        }
+        .message-user {
+            background-color: #1a2f27;
+            color: #ffffff;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+        .message-time {
+            font-size: 10px;
+            color: #999;
+            margin-top: 5px;
+            text-align: right;
+            display: block;
+        }
+        .message-user .message-time {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .typing-indicator {
+            align-self: flex-start;
+            background-color: #ffffff;
+            border: 1px solid #f3eee7;
+            padding: 12px 18px;
+            border-radius: 12px;
+            border-bottom-left-radius: 2px;
+            display: none;
+            gap: 5px;
+            align-items: center;
+        }
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #c5a880;
+            animation: bounce-dot 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        .typing-dot:nth-child(3) { animation-delay: 0s; }
+        @keyframes bounce-dot {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1.0); }
+        }
+
+        .chat-input-area {
+            padding: 15px 20px;
+            background: #ffffff;
+            border-top: 1px solid #f3eee7;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .chat-input {
+            flex-grow: 1;
+            padding: 12px 18px;
+            border: 1px solid #e5e0d8;
+            border-radius: 30px;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            transition: all 0.3s;
+            background-color: #fcfbf7;
+        }
+        .chat-input:focus {
+            border-color: #c5a880;
+            background-color: #fff;
+            box-shadow: 0 0 8px rgba(197, 168, 128, 0.15);
+        }
+        .btn-send {
+            background-color: #1a2f27;
+            color: #fff;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+        .btn-send:hover {
+            background-color: #c5a880;
+            transform: scale(1.05);
+        }
+
+        /* Testimonials Styles */
+        .testimonials-section {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .testimonial-board {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid #f3eee7;
+            padding: 30px;
+            height: 380px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .testimonial-card {
+            border-bottom: 1px solid #f3eee7;
+            padding-bottom: 20px;
+            animation: fadeIn 0.4s ease;
+        }
+        .testimonial-card:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .testimonial-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f3eee7;
+            color: #1a2f27;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e5e0d8;
+        }
+        .user-meta h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            color: #1a2f27;
+        }
+        .trip-tag {
+            font-size: 11px;
+            color: #c5a880;
+            font-weight: 500;
+        }
+        .rating-stars {
+            color: #ffb300;
+            font-size: 12px;
+        }
+        .testimonial-body {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.6;
+            font-style: italic;
+        }
+        .testimonial-date {
+            font-size: 11px;
+            color: #999;
+            margin-top: 5px;
+            display: block;
+        }
+
+        /* Testimonial Form */
+        .write-testimonial-box {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid #f3eee7;
+            padding: 30px;
+        }
+        .write-testimonial-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: #1a2f27;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #f3eee7;
+            padding-bottom: 10px;
+        }
+        .review-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        @media(max-width: 550px) {
+            .input-row { grid-template-columns: 1fr; }
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .input-group label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .input-group input, .input-group select, .input-group textarea {
+            padding: 10px 14px;
+            border: 1px solid #e5e0d8;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            outline: none;
+            background-color: #fcfbf7;
+            transition: all 0.3s;
+        }
+        .input-group input:focus, .input-group select:focus, .input-group textarea:focus {
+            border-color: #c5a880;
+            background-color: #fff;
+        }
+        .star-rating-selector {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .star-rating-selector i {
+            font-size: 20px;
+            color: #ccc;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .star-rating-selector i.active {
+            color: #ffb300;
+        }
+        .btn-submit-review {
+            background-color: #c5a880;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .btn-submit-review:hover {
+            background-color: #b0936d;
+        }
+
+        /* Toast Notification (Custom Modal replacement) */
+        .toast-notification {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1a2f27;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            border: 1px solid #c5a880;
+            transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .toast-notification.show {
+            bottom: 40px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111e19;
+            color: rgba(255,255,255,0.5);
+            padding: 40px 8% 25px 8%;
+            font-size: 13px;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 30px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .footer-socials {
+            display: flex;
+            gap: 20px;
+        }
+        .footer-socials a {
+            color: rgba(255,255,255,0.6);
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        .footer-socials a:hover {
+            color: #c5a880;
+        }
+        .copyright {
+            text-align: center;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">WANDERLUST</div>
+        <div class="menu-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
+        <div class="nav-right-container" id="navContainer">
+            <ul class="nav-links">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="index.html#destinasi">Destinasi</a></li>
+                <li><a href="gallery.html">Galeri</a></li>
+                <li><a href="#" class="active">Chat & Testimoni</a></li>
+                <li><a href="index.html#booking" class="btn-nav-book">Pesan Sekarang</a></li>
+            </ul>
+            <div class="nav-socials">
+                <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://tiktok.com" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Galeri -->
+    <header class="page-header">
+        <p class="section-subtitle">Customer Care & Stories</p>
+        <h1 class="section-title">Konsultasi & Testimoni</h1>
+        <p class="section-desc">Diskusikan rencana perjalanan impian Anda bersama konsultan senior kami, serta baca kisah bahagia dari para penjelajah Wanderlust terdahulu.</p>
+    </header>
+
+    <!-- Main Content Area split -->
+    <main class="main-container">
+
+        <!-- Sisi Kiri: Chat Box Admin AI -->
+        <section class="chat-section">
+            <div class="chat-header">
+                <div class="admin-avatar">S</div>
+                <div class="admin-status">
+                    <span class="admin-name">Sofia</span>
+                    <span class="status-tag"><span class="status-dot"></span> Senior Travel Consultant (Online)</span>
+                </div>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <!-- Pesan pembuka bawaan -->
+                <div class="message-bubble message-admin">
+                    Halo! Selamat datang di Wanderlust Tour & Travel. 😊
+                    <br><br>Saya <strong>Sofia</strong>, konsultan perjalanan premium Anda. Ada yang bisa saya bantu hari ini? 
+                    Anda bisa menanyakan detail paket <strong>Eksotika Bali (Rp 4.5jt)</strong>, <strong>Pesona Kyoto (Rp 15.2jt)</strong>, <strong>Sihir Santorini (Rp 24jt)</strong>, atau meminta rekomendasi perjalanan sesuai minat Anda.
+                    <span class="message-time" id="openTime">09:00</span>
+                </div>
+            </div>
+
+            <!-- Typing Indicator -->
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <span style="font-size: 11px; color: #999; margin-left: 5px;">Sofia sedang mengetik...</span>
+            </div>
+
+            <div class="chat-input-area">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Tanyakan seputar paket atau destinasi..." onkeydown="handleChatEnter(event)">
+                <button class="btn-send" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </section>
+
+        <!-- Sisi Kanan: Testimonial List & Write Testimonial -->
+        <section class="testimonials-section">
+            
+            <!-- Papan Testimoni Pelanggan -->
+            <div class="testimonial-board" id="testimonialBoard">
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 20px; color: #1a2f27; border-bottom: 1px solid #f3eee7; padding-bottom: 10px; margin-bottom: 10px;">
+                    Kata Sahabat Wanderlust
+                </h3>
+                
+                <!-- Testi 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="user-info">
+                            <div class="user-avatar" style="background-color: #c5a880; color: #fff;">AF</div>
+                            <div class="user-meta">
+                                <h4>Ahmad Fauzi</h4>
+                                <span class="trip-tag">Paket: Pesona Kyoto</span>
+                            </div>
+                        </div>
+                        <div class="rating-stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="testimonial-body">"Perjalanan ke Kyoto sangat teratur. Menginap di Ryokan tradisional bernuansa mewah dan mencicipi hidangan Kaiseki adalah momen terbaik. Sofia juga sangat ramah dalam mengarahkan rencana perjalanan kami."</p>
+                    <span class="testimonial-date">Maret 2026</span>
+                </div>
+
+                <!-- Testi 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="user-info">
+                            <div class="user-avatar" style="background-color: #1a2f27; color: #fff;">NS</div>
+                            <div class="user-meta">
+                                <h4>Nadia Siregar</h4>
+                                <span class="trip-tag">Paket: Eksotika Bali</span>
+                            </div>
+                        </div>
+                        <div class="rating-stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="testimonial-body">"Spa aromaterapi Bali selama 2 jam membuat badan rileks total. Penyeberangan ke Nusa Penida menggunakan fast boat sangat aman dan terencana. Sangat puas dengan pelayanan VIP Wanderlust!"</p>
+                    <span class="testimonial-date">Mei 2026</span>
+                </div>
+
+                <!-- Testi 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="user-info">
+                            <div class="user-avatar" style="background-color: #8b9d88; color: #fff;">CW</div>
+                            <div class="user-meta">
+                                <h4>Christian Wibowo</h4>
+                                <span class="trip-tag">Paket: Sihir Santorini</span>
+                            </div>
+                        </div>
+                        <div class="rating-stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="testimonial-body">"Yacht cruise privat di Santorini benar-benar luar biasa berkelas. Melihat sunset Oia langsung dari tengah laut Aegea sambil menikmati sajian BBQ hangat. Sungguh liburan mewah yang berkesan!"</p>
+                    <span class="testimonial-date">Juni 2026</span>
+                </div>
+            </div>
+
+            <!-- Formulir Tulis Testimoni Baru -->
+            <div class="write-testimonial-box">
+                <h3>Bagikan Kisah Anda</h3>
+                <form class="review-form" id="testimonialForm" onsubmit="submitTestimonial(event)">
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="revName">Nama Lengkap</label>
+                            <input type="text" id="revName" required placeholder="Contoh: Budi Santoso">
+                        </div>
+                        <div class="input-group">
+                            <label for="revTrip">Paket Wisata</label>
+                            <select id="revTrip" required>
+                                <option value="" disabled selected>-- Pilih Paket --</option>
+                                <option value="Eksotika Bali">Eksotika Bali</option>
+                                <option value="Pesona Kyoto">Pesona Kyoto</option>
+                                <option value="Sihir Santorini">Sihir Santorini</option>
+                                <option value="Lainnya">Lainnya / Kustom</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Berikan Rating Anda</label>
+                        <div class="star-rating-selector" id="starRatingSelector">
+                            <i class="fa-solid fa-star" data-rating="1" onclick="setRating(1)"></i>
+                            <i class="fa-solid fa-star" data-rating="2" onclick="setRating(2)"></i>
+                            <i class="fa-solid fa-star" data-rating="3" onclick="setRating(3)"></i>
+                            <i class="fa-solid fa-star" data-rating="4" onclick="setRating(4)"></i>
+                            <i class="fa-solid fa-star" data-rating="5" onclick="setRating(5)"></i>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="revComment">Cerita / Komentar Liburan Anda</label>
+                        <textarea id="revComment" rows="4" required placeholder="Tuliskan pengalaman menyenangkan Anda bersama kami..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit-review">Kirim Testimoni & Ulasan</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Toast Notification -->
+    <div class="toast-notification" id="toastNotification">
+        <i class="fa-solid fa-circle-check" style="color: #4caf50; font-size: 18px;"></i>
+        <span id="toastMessage">Testimoni Anda berhasil diterbitkan!</span>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">WANDERLUST</div>
+            <div class="footer-socials">
+                <a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://tiktok.com" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 Wanderlust Tour & Travel. Crafted for elegant journeys.</p>
+    </footer>
+
+    <!-- JavaScript System -->
+    <script>
+        // 1. Mobile Menu Toggle
+        function toggleMenu() {
+            const navContainer = document.getElementById('navContainer');
+            navContainer.classList.toggle('active');
+        }
+
+        // 2. Set Up Opening Chat Time
+        document.getElementById('openTime').textContent = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+
+        // 3. System Gemini API (Sofia AI)
+        const apiKey = ""; // API Key disisipkan otomatis oleh environment pada waktu eksekusi
+
+        // Prompt Sistem yang mendalam untuk kepribadian Sofia
+        const systemPrompt = `Anda adalah Sofia, seorang Konsultan Perjalanan Premium Senior di Wanderlust Tour & Travel. Anda ramah, hangat, anggun, sangat profesional, dan berbicara dalam bahasa Indonesia yang elegan.
+Detail paket Wanderlust yang Anda tawarkan secara fasih:
+1. Eksotika Bali (Rp 4.500.000): Paket 4 Hari 3 Malam. Sorotan: Ubud, Uluwatu Sunset, Fast boat ke Nusa Penida, Spa Aromaterapi Premium 2 jam.
+2. Pesona Kyoto (Rp 15.200.000): Paket 6 Hari 5 Malam. Sorotan: Menginap di Ryokan tradisional mewah, hidangan kuliner kaiseki otentik, kuil bersalju, Hutan Bambu Arashiyama.
+3. Sihir Santorini (Rp 24.000.000): Paket 5 Hari 4 Malam. Sorotan: Yacht cruise privat melintasi laut Aegea, menikmati sunset Oia legendaris, sajian BBQ hangat di atas dek.
+
+Aturan Anda:
+- Jawab pertanyaan klien dengan sopan, anggun, dan lengkap.
+- Selalu dorong dan tawarkan klien secara halus untuk mengklik tautan "Pesan Sekarang" atau menu "Pemesanan" di bagian atas jika mereka menunjukkan ketertarikan memesan paket tersebut.
+- Jangan gunakan formatting Markdown yang terlalu tebal berlebihan, pertahankan agar tampilan teks tetap bersih.`;
+
+        // Mengirim pesan dengan Backoff Eksponensial (retry maksimal 5 kali)
+        async function fetchGeminiWithBackoff(userQuery) {
+            const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const payload = {
+                contents: [
+                    { parts: [{ text: userQuery }] }
+                ],
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                }
+            };
+
+            let delay = 1000; // Mulai dari 1 detik
+            for (let i = 0; i < 5; i++) {
+                try {
+                    const response = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        return result.candidates?.[0]?.content?.parts?.[0]?.text;
+                    }
+                } catch (e) {
+                    // Penanganan retrying tanpa mencemari log konsol
+                }
+                // Tunggu berdasarkan delay eksponensial (1s, 2s, 4s, 8s, 16s)
+                await new Promise(resolve => setTimeout(resolve, delay));
+                delay *= 2;
+            }
+            throw new Error("Koneksi gagal");
+        }
+
+        // Fungsi Mengirim Pesan Chat dari Input
+        async function sendMessage() {
+            const chatInput = document.getElementById('chatInput');
+            const userText = chatInput.value.trim();
+            if (!userText) return;
+
+            // Bersihkan kolom input
+            chatInput.value = "";
+
+            // Render pesan user di layar
+            appendMessage(userText, 'user');
+
+            // Gulir ke bawah
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Tampilkan indikator mengetik
+            const typingIndicator = document.getElementById('typingIndicator');
+            typingIndicator.style.display = 'flex';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            try {
+                // Panggil API Gemini
+                const botReply = await fetchGeminiWithBackoff(userText);
+                
+                // Hilangkan indikator mengetik
+                typingIndicator.style.display = 'none';
+
+                // Tampilkan respons Sofia
+                appendMessage(botReply || "Maaf, Sofia sedang mempersiapkan jadwal. Ada pertanyaan lain, Sahabat Wanderlust?", 'admin');
+            } catch (err) {
+                typingIndicator.style.display = 'none';
+                appendMessage("Maaf, sepertinya jaringan kami sedang sibuk atau sistem kami mengalami gangguan. Silakan hubungi kami kembali beberapa saat lagi.", 'admin');
+            }
+
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Menambahkan elemen balon teks ke chatbox
+        function appendMessage(text, sender) {
+            const chatMessages = document.getElementById('chatMessages');
+            const bubble = document.createElement('div');
+            bubble.className = `message-bubble message-${sender}`;
+            
+            // Konversi garis baru ke <br> agar format teks tetap rapi
+            const formattedText = text.replace(/\n/g, '<br>');
+            
+            const time = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+            
+            bubble.innerHTML = `${formattedText} <span class="message-time">${time}</span>`;
+            chatMessages.appendChild(bubble);
+        }
+
+        // Menangani ketukan tombol enter di kolom chat input
+        function handleChatEnter(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+
+        // 4. Testimonial System (Star Rating & Dynamic Rendering)
+        let selectedRating = 5; // Standar rating bintang awal adalah 5
+
+        function setRating(rating) {
+            selectedRating = rating;
+            const stars = document.querySelectorAll('#starRatingSelector i');
+            stars.forEach(star => {
+                const starVal = parseInt(star.getAttribute('data-rating'));
+                if (starVal <= rating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+        // Setel bintang default saat pertama kali dimuat
+        setRating(selectedRating);
+
+        // Fungsi Mengirim Testimoni Baru
+        function submitTestimonial(event) {
+            event.preventDefault();
+
+            const nameInput = document.getElementById('revName').value.trim();
+            const tripSelect = document.getElementById('revTrip').value;
+            const commentInput = document.getElementById('revComment').value.trim();
+
+            if (!nameInput || !tripSelect || !commentInput) return;
+
+            // Buat inisial nama untuk avatar
+            const initials = nameInput.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+
+            // Buat kerangka bintang HTML
+            let starsHtml = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= selectedRating) {
+                    starsHtml += '<i class="fa-solid fa-star"></i>';
+                } else {
+                    starsHtml += '<i class="fa-regular fa-star" style="color: #ccc;"></i>';
+                }
+            }
+
+            // Buat Card Testimoni baru
+            const testimonialBoard = document.getElementById('testimonialBoard');
+            const newCard = document.createElement('div');
+            newCard.className = 'testimonial-card';
+            newCard.innerHTML = `
+                <div class="testimonial-header">
+                    <div class="user-info">
+                        <div class="user-avatar" style="background-color: #c5a880; color: #fff;">${initials}</div>
+                        <div class="user-meta">
+                            <h4>${nameInput}</h4>
+                            <span class="trip-tag">Paket: ${tripSelect}</span>
+                        </div>
+                    </div>
+                    <div class="rating-stars">
+                        ${starsHtml}
+                    </div>
+                </div>
+                <p class="testimonial-body">"${commentInput}"</p>
+                <span class="testimonial-date">Hari ini</span>
+            `;
+
+            // Masukkan testimoni baru di baris teratas list (setelah judul papan testimoni)
+            const titleElement = testimonialBoard.querySelector('h3');
+            titleElement.insertAdjacentElement('afterend', newCard);
+
+            // Gulir otomatis agar ulasan yang baru masuk langsung terlihat
+            testimonialBoard.scrollTop = 0;
+
+            // Bersihkan seluruh formulir input
+            document.getElementById('testimonialForm').reset();
+            setRating(5); // Kembalikan rating ke bintang 5
+
+            // Munculkan notifikasi sukses (Toast)
+            showToast("Ulasan berharga Anda berhasil diterbitkan!");
+        }
+
+        // Toast Helper
+        function showToast(message) {
+            const toast = document.getElementById('toastNotification');
+            const msgEl = document.getElementById('toastMessage');
+            
+            msgEl.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
