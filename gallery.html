@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Perjalanan - Zenith Tour & Travel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #fcfbf7;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a2f27;
+            letter-spacing: 1px;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+            color: #555;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #c5a880;
+        }
+        
+        /* Ikon Sosial Media di Navbar */
+        .nav-right-container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .nav-socials {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            border-left: 1px solid #e5e0d8;
+            padding-left: 20px;
+        }
+        .nav-socials a {
+            color: #1a2f27;
+            font-size: 18px;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .nav-socials a:hover {
+            color: #c5a880;
+            transform: scale(1.15);
+        }
+
+        /* Responsive Mobile Menu Button */
+        .menu-toggle {
+            display: none;
+            font-size: 22px;
+            color: #1a2f27;
+            cursor: pointer;
+        }
+
+        /* Responsive Mobile Styles */
+        @media(max-width: 991px) {
+            .nav-right-container {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                padding: 30px;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+                gap: 20px;
+                border-top: 1px solid #f3eee7;
+            }
+            .nav-right-container.active {
+                display: flex;
+            }
+            .nav-links {
+                flex-direction: column;
+                gap: 20px;
+                width: 100%;
+                text-align: center;
+            }
+            .nav-socials {
+                border-left: none;
+                padding-left: 0;
+                border-top: 1px solid #f3eee7;
+                padding-top: 20px;
+                width: 100%;
+                justify-content: center;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        .btn-nav-book {
+            background-color: #1a2f27;
+            color: #fff !important;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-size: 13px;
+            transition: background 0.3s !important;
+        }
+        .btn-nav-book:hover {
+            background-color: #c5a880;
+        }
+
+        /* Header Galeri */
+        .gallery-header {
+            text-align: center;
+            padding: 80px 8% 40px 8%;
+            background: linear-gradient(rgba(26, 47, 39, 0.03), rgba(26, 47, 39, 0.00));
+        }
+        .section-subtitle {
+            color: #c5a880;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            color: #1a2f27;
+            margin-bottom: 20px;
+        }
+        .section-desc {
+            max-width: 600px;
+            margin: 0 auto;
+            color: #666;
+            font-weight: 300;
+        }
+
+        /* Filter Kategori */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+        .filter-btn {
+            background: transparent;
+            border: 1px solid #e5e0d8;
+            padding: 10px 24px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            border-radius: 30px;
+            cursor: pointer;
+            color: #555;
+            transition: all 0.3s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background-color: #c5a880;
+            border-color: #c5a880;
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(197, 168, 128, 0.2);
+        }
+
+        /* Grid Galeri */
+        .gallery-container {
+            padding: 0 8% 100px 8%;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        .gallery-item {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            cursor: pointer;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s;
+            position: relative;
+        }
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        }
+        .gallery-img-wrapper {
+            height: 260px;
+            overflow: hidden;
+            position: relative;
+        }
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.08);
+        }
+        /* Tag Lokasi */
+        .tag-location {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(26, 47, 39, 0.85);
+            backdrop-filter: blur(4px);
+            color: #fff;
+            padding: 4px 12px;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 4px;
+        }
+        .gallery-info {
+            padding: 20px;
+        }
+        .gallery-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: #1a2f27;
+            margin-bottom: 5px;
+        }
+        .gallery-info p {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 15px;
+        }
+        .gallery-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f3eee7;
+            padding-top: 12px;
+            font-size: 12px;
+            color: #999;
+        }
+        .gallery-meta .photographer {
+            color: #c5a880;
+            font-weight: 500;
+        }
+
+        /* Lightbox (Pop-up Foto Detail) */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(26, 47, 39, 0.95);
+            backdrop-filter: blur(8px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 40px;
+        }
+        .lightbox-content {
+            background-color: #fff;
+            max-width: 900px;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        @media(max-width: 768px) {
+            .lightbox-content {
+                flex-direction: column;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+        }
+        .lightbox-img-pane {
+            flex: 1.2;
+            height: 500px;
+            background-color: #000;
+            position: relative;
+        }
+        .lightbox-img-pane img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.25s ease-in-out;
+        }
+        @media(max-width: 768px) {
+            .lightbox-img-pane {
+                height: 250px;
+                flex: none;
+            }
+        }
+        
+        /* Tombol Navigasi Slider */
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(26, 47, 39, 0.7);
+            backdrop-filter: blur(4px);
+            color: #fff;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            z-index: 15;
+        }
+        .slider-arrow:hover {
+            background-color: #c5a880;
+            transform: translateY(-50%) scale(1.08);
+        }
+        .prev-arrow {
+            left: 15px;
+        }
+        .next-arrow {
+            right: 15px;
+        }
+        /* Penghitung Slide / Counter */
+        .slider-counter {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(26, 47, 39, 0.85);
+            backdrop-filter: blur(4px);
+            color: #fff;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            z-index: 15;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .lightbox-desc-pane {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        @media(max-width: 768px) {
+            .lightbox-desc-pane {
+                padding: 25px;
+            }
+        }
+        .lb-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            color: #1a2f27;
+            cursor: pointer;
+            transition: color 0.3s;
+            z-index: 10;
+        }
+        .lb-close:hover {
+            color: #c5a880;
+        }
+        .lb-location {
+            color: #c5a880;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+        .lb-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: #1a2f27;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+        .lb-story {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 20px;
+            font-style: italic;
+            border-left: 3px solid #c5a880;
+            padding-left: 15px;
+        }
+        .lb-details {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 30px;
+        }
+        .lb-details p {
+            margin-bottom: 6px;
+        }
+        .lb-details strong {
+            color: #1a2f27;
+        }
+        .lb-btn {
+            display: inline-block;
+            background-color: #1a2f27;
+            color: #fff;
+            text-align: center;
+            padding: 12px;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        .lb-btn:hover {
+            background-color: #c5a880;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111e19;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 30px;
+            font-size: 13px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">ZENITH</div>
+        <div class="menu-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
+        <div class="nav-right-container" id="navContainer">
+            <ul class="nav-links">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="index.html#destinasi">Destinasi</a></li>
+                <li><a href="#" class="active">Galeri</a></li>
+                <li><a href="index.html#booking" class="btn-nav-book">Pesan Sekarang</a></li>
+            </ul>
+            <div class="nav-socials">
+                <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://tiktok.com" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="gallery-header">
+        <p class="section-subtitle">Moments Captured</p>
+        <h1 class="section-title">Dokumentasi Perjalanan</h1>
+        <p class="section-desc">Melihat kembali momen-momen indah, canda tawa, dan keajaiban alam yang dirasakan langsung oleh sahabat penjelajah Zenith di destinasi terbaik nusantara.</p>
+    </header>
+
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="filterGallery('semua')">Semua Momen</button>
+        <button class="filter-btn" onclick="filterGallery('bali')">Bali</button>
+        <button class="filter-btn" onclick="filterGallery('yogyakarta')">Yogyakarta</button>
+        <button class="filter-btn" onclick="filterGallery('pangandaran')">Pangandaran</button>
+    </div>
+
+    <section class="gallery-container">
+        <div class="gallery-grid" id="galleryGrid">
+            
+            <div class="gallery-item" data-category="bali" onclick="openLightbox(this)">
+                <div class="gallery-img-wrapper">
+                    <span class="tag-location">Bali, Indonesia</span>
+                    <img class="gallery-img" src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=700&q=80" alt="Matahari Terbit di Ubud">
+                </div>
+                <div class="gallery-info">
+                    <h3>Ketenangan Pagi Ubud</h3>
+                    <p>Suasana sunyi berselimut kabut pagi di tengah sawah terasering Tegalalang.</p>
+                    <div class="gallery-meta">
+                        <span>Oleh <span class="photographer">Budi Santoso</span></span>
+                        <span>Mei 2026</span>
+                    </div>
+                </div>
+                <script type="application/json" class="album-data">
+                    {
+                        "images": [
+                            "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1000&q=80",
+                            "https://images.unsplash.com/photo-1518548419070-ad8e3b547217?auto=format&fit=crop&w=1000&q=80",
+                            "https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?auto=format&fit=crop&w=1000&q=80"
+                        ],
+                        "story": "Menginap di resort bambu dekat sawah memberi ketenangan luar biasa. Pagi hari kami berjalan menyusuri pematang sawah tanpa alas kaki, lalu melanjutkan petualangan mandi air terjun tersembunyi di dekat Ubud. Sangat menyembuhkan jiwa."
+                    }
+                </script>
+            </div>
+
+            <div class="gallery-item" data-category="yogyakarta" onclick="openLightbox(this)">
+                <div class="gallery-img-wrapper">
+                    <span class="tag-location">Yogyakarta, Indonesia</span>
+                    <img class="gallery-img" src="https://images.unsplash.com/photo-1584810359583-96fc3448beaa?auto=format&fit=crop&w=700&q=80" alt="Candi Prambanan">
+                </div>
+                <div class="gallery-info">
+                    <h3>Kemegahan Relief Prambanan</h3>
+                    <p>Langkah kaki yang damai menyusuri kemegahan arsitektur kuno warisan budaya dunia.</p>
+                    <div class="gallery-meta">
+                        <span>Oleh <span class="photographer">Amanda Putri</span></span>
+                        <span>Maret 2026</span>
+                    </div>
+                </div>
+                <script type="application/json" class="album-data">
+                    {
+                        "images": [
+                            "https://images.unsplash.com/photo-1584810359583-96fc3448beaa?auto=format&fit=crop&w=1000&q=80",
+                            "https://images.unsplash.com/photo-1626125330310-8cf9b33a2bd6?auto=format&fit=crop&w=1000&q=80",
+                            "https://images.unsplash.com/photo-1601999109332-542b18dbec57?auto=format&fit=crop&w=1000&q=80"
+                        ],
+                        "story": "Menikmati sore hari di pelataran Candi Prambanan sembari menunggu pertunjukan sendratari Ramayana. Suasana magis Jogja selalu berhasil membuat kami rindu untuk kembali berkunjung."
+                    }
+                </script>
+            </div>
+
+            <div class="gallery-item" data-category="pangandaran" onclick="openLightbox(this)">
+                <div class="gallery-img-wrapper">
+                    <span class="tag-location">Pangandaran, Indonesia</span>
+                    <img class="gallery-img" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80" alt="Green Canyon Pangandaran">
+                </div>
+                <div class="gallery-info">
+                    <h3>Petualangan Green Canyon</h3>
+                    <p>Menyusuri tebing batu lumut dan aliran sungai jernih berwarna hijau toska yang memesona.</p>
+                    <div class="gallery-meta">
+                        <span>Oleh <span class="photographer">Kevin Sanjaya</span></span>
+                        <span>Juni 2026</span>
+                    </div>
+                </div>
+                <script type="application/json" class="album-data">
+                    {
+                        "images": [
+                            "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80",
+                            "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1000&q=80",
+                            "https://images.unsplash.com/photo-1505118380757-91f5f5632de0?auto=format&fit=crop&w=1000&q=80"
+                        ],
+                        "story": "Pengalaman body rafting di Green Canyon benar-benar memacu adrenalin. Dikelilingi stalaktit tua dan pepohonan rindang, melompat dari tebing setinggi 5 meter menjadi momen tak terlupakan bersama Zenith!"
+                    }
+                </script>
+            </div>
+
+            <div class="gallery-item" data-category="bali" onclick="openLightbox(this)">
+                <div class="gallery-img-wrapper">
+                    <span class="tag-location">Bali, Indonesia</span>
+                    <img class="gallery-img" src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=700&q=80" alt="Upacara Adat Bali">
+                </div>
+                <div class="gallery-info">
+                    <h3>Kedalaman Budaya</h3>
+                    <p>Melihat kedamaian prosesi doa warga lokal dengan sesaji yang indah di Pura Tirta Empul.</p>
+                    <div class="gallery-meta">
+                        <span>Oleh <span class="photographer">Dewi Sartika</span></span>
+                        <span>Januari 2026</span>
+                    </div>
+                </div>
+                <script type="application/json" class="album-data">
+                    {
+                        "images": [
+                            "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=1000&q=80",
+                            "https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1000&q=80",
+                            "https://images.unsplash.com/photo-1546484475-7f7bd55792da?auto=format&fit=crop&w=1000&q=80"
+                        ],
+                        "story": "Bisa mengikuti ritual pembersihan diri (melukat) memberi kesan yang sangat sakral. Penduduk lokal sangat ramah dan menuntun kami dengan sabar demi kelancaran tradisi leluhur Bali."
+                    }
+                </script>
+            </div>
+
+            <div class="gallery-item" data-category="yogyakarta" onclick="openLightbox(this)">
+                <div class="gallery-img-wrapper">
+                    <span class="tag-location">Yogyakarta, Indonesia</span>
+                    <img class="gallery-img" src="https://images.unsplash.com/photo-1626125330310-8cf9b33a2bd6?auto=format&fit=crop&w=700&q=80" alt="Malioboro Yogyakarta">
+                </div>
+                <div class="gallery-info">
+                    <h3>Sudut Hangat Malioboro</h3>
+                    <p>Menikmati alunan musik jalanan dan suasana malam kota yang sarat akan romansa.</p>
+                    <div class="gallery-meta">
+                        <span>Oleh <span class="photographer">Rangga Pratama</span></span>
+                        <span>Maret 2026</span>
+                    </div>
+                </div>
+                <script type="application/json" class="album-data">
+                    {
+                        "images": [
+                            "https://images.unsplash.com/photo-1626125330310-8cf9b33a2bd6?auto=format&fit=crop&w=1000&q=80",
+                            "https://images.unsplash.com/photo-1584810359583-96fc3448beaa?auto=format&fit=crop&w=1000&q=80",
+                            "https://images.unsplash.com/photo-1601999109332-542b18dbec57?auto=format&fit=crop&w=1000&q=80"
+                        ],
+                        "story": "Berjalan kaki di sepanjang trotoar Malioboro sembari berburu kuliner gudeg lesehan. Keramahan warga lokal membuat kami merasa sedang berada di rumah sendiri."
+                    }
+                </script>
+            </div>
+
+            <div class="gallery-item" data-category="pangandaran" onclick="openLightbox(this)">
+                <div class="gallery-img-wrapper">
+                    <span class="tag-location">Pangandaran, Indonesia</span>
+                    <img class="gallery-img" src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=700&q=80" alt="Pantai Barat Pangandaran">
+                </div>
+                <div class="gallery-info">
+                    <h3>Matahari Terbenam Pantai Barat</h3>
+                    <p>Warna langit jingga keemasan yang memantul indah di atas hamparan pasir luas.</p>
+                    <div class="gallery-meta">
+                        <span>Oleh <span class="photographer">Citra Kirana</span></span>
+                        <span>April 2026</span>
+                    </div>
+                </div>
+                <script type="application/json" class="album-data">
+                    {
+                        "images": [
+                            "https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1000&q=80",
+                            "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1000&q=80",
+                            "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1000&q=80"
+                        ],
+                        "story": "Menutup hari dengan berjalan santai di tepi pantai barat Pangandaran. Ombak yang ramah dan angin sepoi-sepoi membuat momen matahari terbenam terasa sangat syahdu."
+                    }
+                </script>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="lightbox" id="lightboxModal">
+        <div class="lightbox-content">
+            <span class="lb-close" onclick="closeLightbox()">&times;</span>
+            <div class="lightbox-img-pane">
+                <img id="lbImg" src="" alt="Detail Gambar">
+                <button class="slider-arrow prev-arrow" onclick="prevSlide(event)" aria-label="Foto Sebelumnya">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="slider-arrow next-arrow" onclick="nextSlide(event)" aria-label="Foto Selanjutnya">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+                <div class="slider-counter" id="lbCounter">1 / 1</div>
+            </div>
+            <div class="lightbox-desc-pane">
+                <div>
+                    <span class="lb-location" id="lbLoc">Location</span>
+                    <h2 class="lb-title" id="lbTitle">Title</h2>
+                    <p class="lb-story" id="lbStory">Story</p>
+                    <div class="lb-details">
+                        <p><strong>Fotografer:</strong> <span id="lbPhoto">Name</span></p>
+                        <p><strong>Waktu Perjalanan:</strong> <span id="lbDate">Date</span></p>
+                    </div>
+                </div>
+                <a href="index.html#booking" class="lb-btn">Pesan Paket Serupa</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Zenith Tour & Travel. Crafted for elegant journeys.</p>
+    </footer>
+
+    <script>
+        // Responsive Menu Toggle
+        function toggleMenu() {
+            const navContainer = document.getElementById('navContainer');
+            navContainer.classList.toggle('active');
+        }
+
+        // Variabel Global untuk Manajemen Slider Berdasarkan Album Destinasi
+        let currentAlbumImages = [];
+        let currentImageIndex = 0;
+        let activeCardElement = null;
+
+        // Fungsi Filter Kategori Utama
+        function filterGallery(category) {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                if (category === 'semua') {
+                    item.style.display = 'block';
+                } else {
+                    if (item.getAttribute('data-category') === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        // Fungsi Membuka Lightbox dan Memuat Gambar Khusus Album Destinasi yang Dipilih
+        function openLightbox(element) {
+            activeCardElement = element;
+            
+            // Mengambil data JSON album dari kartu destinasi yang diklik
+            const jsonElement = element.querySelector('.album-data');
+            const albumData = JSON.parse(jsonElement.textContent);
+
+            // Set data gambar-gambar khusus destinasi ini ke variabel global slider
+            currentAlbumImages = albumData.images;
+            currentImageIndex = 0;
+
+            // Memperbarui UI statis dari kartu destinasi
+            const location = element.querySelector('.tag-location').innerText;
+            const title = element.querySelector('.gallery-info h3').innerText;
+            const photographer = element.querySelector('.photographer').innerText;
+            const date = element.querySelector('.gallery-meta span:last-child').innerText;
+
+            document.getElementById('lbLoc').innerText = location;
+            document.getElementById('lbTitle').innerText = title;
+            document.getElementById('lbStory').innerText = albumData.story;
+            document.getElementById('lbPhoto').innerText = photographer;
+            document.getElementById('lbDate').innerText = date;
+
+            // Tampilkan foto pertama dalam album
+            updateSlideContent();
+
+            document.getElementById('lightboxModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Kunci scroll halaman utama
+        }
+
+        // Fungsi Memperbarui Visual Gambar Slider di Lightbox
+        function updateSlideContent() {
+            if (currentAlbumImages.length === 0) return;
+
+            const lbImg = document.getElementById('lbImg');
+
+            // Efek transisi redup sebelum berganti foto (Fade Out)
+            lbImg.style.opacity = '0';
+
+            setTimeout(() => {
+                // Mengubah sumber gambar ke indeks foto yang aktif di dalam album tersebut
+                lbImg.src = currentAlbumImages[currentImageIndex];
+                
+                // Perbarui teks counter album (misal: 1 / 3, 2 / 3, 3 / 3)
+                document.getElementById('lbCounter').innerText = `${currentImageIndex + 1} / ${currentAlbumImages.length}`;
+                
+                // Munculkan kembali foto baru (Fade In)
+                lbImg.style.opacity = '1';
+            }, 150);
+        }
+
+        // Navigasi ke Foto Selanjutnya di dalam album yang sama
+        function nextSlide(event) {
+            if (event) event.stopPropagation(); // Cegah modal tertutup
+            currentImageIndex = (currentImageIndex + 1) % currentAlbumImages.length;
+            updateSlideContent();
+        }
+
+        // Navigasi ke Foto Sebelumnya di dalam album yang sama
+        function prevSlide(event) {
+            if (event) event.stopPropagation(); // Cegah modal tertutup
+            currentImageIndex = (currentImageIndex - 1 + currentAlbumImages.length) % currentAlbumImages.length;
+            updateSlideContent();
+        }
+
+        // Fungsi Menutup Lightbox
+        function closeLightbox() {
+            document.getElementById('lightboxModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Aktifkan kembali scroll
+        }
+
+        // Tutup lightbox jika mengklik di luar area gambar
+        window.onclick = function(event) {
+            const modal = document.getElementById('lightboxModal');
+            if (event.target === modal) {
+                closeLightbox();
+            }
+        }
+
+        // Kontrol Slider menggunakan Keyboard khusus navigasi album
+        window.addEventListener('keydown', function(event) {
+            const modal = document.getElementById('lightboxModal');
+            if (modal.style.display === 'flex') {
+                if (event.key === 'ArrowRight') {
+                    nextSlide();
+                } else if (event.key === 'ArrowLeft') {
+                    prevSlide();
+                } else if (event.key === 'Escape') {
+                    closeLightbox();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
