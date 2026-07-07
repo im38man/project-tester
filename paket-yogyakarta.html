@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budaya & Sejarah Yogyakarta - Zenith Tour & Travel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; color: #333; line-height: 1.6; background-color: #fcfbf7; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+        
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; background-color: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: #1a2f27; letter-spacing: 1px; }
+        .nav-right-container { display: flex; align-items: center; gap: 40px; }
+        .nav-links { display: flex; list-style: none; gap: 30px; align-items: center; }
+        .nav-links a { font-size: 14px; font-weight: 500; transition: color 0.3s; color: #555; }
+        .nav-links a:hover, .nav-links a.active { color: #c5a880; }
+        .nav-socials { display: flex; gap: 15px; align-items: center; border-left: 1px solid #e5e0d8; padding-left: 20px; }
+        .nav-socials a { color: #1a2f27; font-size: 18px; transition: color 0.3s, transform 0.3s; }
+        .nav-socials a:hover { color: #c5a880; transform: scale(1.15); }
+        .btn-nav-book { background-color: #1a2f27; color: #fff !important; padding: 8px 20px; border-radius: 4px; font-size: 13px; transition: background 0.3s !important; }
+        .btn-nav-book:hover { background-color: #c5a880; }
+        .menu-toggle { display: none; font-size: 22px; color: #1a2f27; cursor: pointer; }
+        
+        @media(max-width: 991px) {
+            .nav-right-container { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: #fff; padding: 30px; box-shadow: 0 10px 15px rgba(0,0,0,0.05); gap: 20px; border-top: 1px solid #f3eee7; }
+            .nav-right-container.active { display: flex; }
+            .nav-links { flex-direction: column; gap: 20px; width: 100%; text-align: center; }
+            .nav-socials { border-left: none; padding-left: 0; border-top: 1px solid #f3eee7; padding-top: 20px; width: 100%; justify-content: center; }
+            .menu-toggle { display: block; }
+        }
+
+        .package-hero { position: relative; height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; background-image: url('https://images.unsplash.com/photo-1604999333679-b86d54738315?auto=format&fit=crop&q=80&w=1200'); background-size: cover; background-position: center; }
+        .package-hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(26, 47, 39, 0.6), rgba(26, 47, 39, 0.3)); z-index: 1; }
+        .hero-content { position: relative; z-index: 2; padding: 0 20px; }
+        .hero-tag { background: #c5a880; color: #fff; font-size: 12px; padding: 6px 15px; border-radius: 20px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; display: inline-block; margin-bottom: 20px; }
+        .package-hero h1 { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700; margin-bottom: 10px; }
+        .package-hero p { font-size: 18px; font-weight: 300; opacity: 0.9; }
+
+        .detail-wrapper { display: grid; grid-template-columns: 2fr 1.1fr; gap: 50px; max-width: 1200px; margin: 60px auto; padding: 0 8%; }
+        
+        @media(max-width: 991px) {
+            .detail-wrapper { grid-template-columns: 1fr; }
+        }
+
+        .detail-content section { background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.03); border: 1px solid #e5e0d8; margin-bottom: 30px; }
+        .detail-content h3 { font-family: 'Playfair Display', serif; font-size: 24px; color: #1a2f27; margin-bottom: 20px; border-bottom: 1px solid #f3eee7; padding-bottom: 15px; }
+        .detail-content p { color: #555; margin-bottom: 20px; font-size: 15px; }
+        
+        .highlight-list, .inclusion-list { list-style: none; margin-bottom: 20px; }
+        .highlight-list li, .inclusion-list li { margin-bottom: 12px; position: relative; padding-left: 28px; color: #555; font-size: 15px; }
+        .highlight-list li::before, .inclusion-list li::before { content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: #c5a880; position: absolute; left: 0; top: 2px; font-size: 18px; }
+        .inc-yes li::before { content: "\f058"; color: #2e7d32; }
+        .inc-no li::before { content: "\f057"; color: #c62828; }
+
+        .itinerary-timeline { margin-top: 20px; }
+        .itinerary-step { position: relative; padding-left: 35px; border-left: 2px solid #e5e0d8; padding-bottom: 30px; }
+        .itinerary-step:last-child { border-left-color: transparent; padding-bottom: 0; }
+        .itinerary-step::before { content: ''; position: absolute; left: -9px; top: 0; width: 16px; height: 16px; border-radius: 50%; background-color: #c5a880; border: 3px solid #fff; box-shadow: 0 0 0 1px #e5e0d8; }
+        .itinerary-day { font-family: 'Playfair Display', serif; font-weight: 700; color: #1a2f27; font-size: 18px; margin-bottom: 8px; }
+        .itinerary-desc { font-size: 14px; color: #666; line-height: 1.7; }
+
+        .sidebar-booking { background: #1a2f27; color: #fff; padding: 40px; border-radius: 12px; position: sticky; top: 100px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); }
+        .price-tag { font-family: 'Playfair Display', serif; font-size: 36px; color: #c5a880; font-weight: 700; margin-bottom: 5px; line-height: 1.1; }
+        .price-sub { font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 25px; display: block; }
+        
+        .sidebar-info { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-bottom: 15px; font-size: 14px; }
+        .sidebar-info span:first-child { color: rgba(255,255,255,0.7); }
+        .sidebar-info span:last-child { font-weight: 500; color: #fff; text-align: right; }
+
+        .booking-form-sidebar { margin-top: 30px; }
+        .form-group { margin-bottom: 20px; display: flex; flex-direction: column; }
+        .form-group label { font-size: 12px; color: #c5a880; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; font-weight: 500; }
+        .form-group input, .form-group select { padding: 12px 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: #fff; font-family: 'Poppins', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s; }
+        .form-group input:focus, .form-group select:focus { border-color: #c5a880; }
+
+        .btn-book-sidebar { width: 100%; padding: 15px; background-color: #c5a880; border: none; color: #fff; font-weight: 600; font-size: 15px; border-radius: 4px; cursor: pointer; transition: background 0.3s, transform 0.2s; font-family: 'Poppins', sans-serif; display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 10px; }
+        .btn-book-sidebar:hover { background-color: #b0936d; transform: translateY(-2px); }
+
+        footer { background-color: #111e19; color: rgba(255,255,255,0.5); padding: 60px 8% 30px 8%; font-size: 13px; }
+        .footer-grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 40px; margin-bottom: 30px; }
+        .footer-info-block h3 { color: #fff; font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 15px; }
+        .footer-info-block p, .footer-info-block a { color: rgba(255, 255, 255, 0.6); line-height: 1.8; margin-bottom: 8px; display: block; transition: color 0.3s; }
+        .footer-info-block a:hover { color: #c5a880; }
+        .footer-info-block i { margin-right: 8px; color: #c5a880; width: 16px; }
+        .footer-logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: #fff; margin-bottom: 15px; }
+        .footer-socials { display: flex; gap: 20px; margin-top: 15px; }
+        .footer-socials a { color: rgba(255,255,255,0.6); font-size: 20px; transition: color 0.3s; display: inline-block; }
+        .footer-socials a:hover { color: #c5a880; }
+        .copyright { text-align: center; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div style="display: flex; flex-direction: column;">
+            <div class="logo" style="line-height: 1.2;">Zenith Tour & Travel</div>
+            <a href="https://www.zenith-adventour.com" target="_blank" style="font-size: 11px; color: #c5a880; letter-spacing: 0.5px; font-weight: 500; margin-top: -2px;">www.zenith-adventour.com</a>
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></div>
+        <div class="nav-right-container" id="navContainer">
+            <ul class="nav-links">
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="index.html#destinasi" class="active">Destinasi</a></li>
+                <li><a href="gallery.html">Galeri</a></li>
+                <li><a href="#booking" class="btn-nav-book">Pesan Sekarang</a></li>
+            </ul>
+            <div class="nav-socials">
+                <a href="#" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://wa.me/62895333841200" target="_blank" title="WhatsApp Admin"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="package-hero">
+        <div class="hero-content">
+            <span class="hero-tag">Warisan Budaya</span>
+            <h1>Budaya & Sejarah Yogyakarta</h1>
+            <p><i class="fa-solid fa-location-dot" style="color: #c5a880; margin-right: 8px;"></i> Yogyakarta, DI Yogyakarta, Indonesia</p>
+        </div>
+    </header>
+
+    <div class="detail-wrapper">
+        <div class="detail-content">
+            <section id="ikhtisar">
+                <h3>Ikhtisar Perjalanan</h3>
+                <p>Rasakan kehangatan kota istimewa Yogyakarta lewat perpaduan seni budaya masa lalu dan pesona alam yang memukau. Dari kemegahan candi purbakala legendaris, suasana magis istana keraton, hingga petualangan modern yang seru, paket ini menawarkan petualangan kultural premium yang sarat akan makna tradisi jawa.</p>
+                
+                <h4 style="font-size: 16px; color: #1a2f27; margin: 25px 0 15px 0; font-family: 'Playfair Display', serif;">Sorotan Utama Wisata:</h4>
+                <ul class="highlight-list">
+                    <li>Menyaksikan mahakarya arsitektur Candi Borobudur / Prambanan.</li>
+                    <li>Eksplorasi kebudayaan kraton resmi Kesultanan Yogyakarta.</li>
+                    <li>Menikmati petualangan Jeep Lava Tour Merapi yang memacu adrenalin.</li>
+                    <li>Berburu cindera mata eksklusif dan kuliner legendaris di sepanjang Malioboro.</li>
+                </ul>
+            </section>
+
+            <section id="itinerary">
+                <h3>Rencana Perjalanan (Itinerary)</h3>
+                <div class="itinerary-timeline">
+                    <div class="itinerary-step">
+                        <div class="itinerary-day">Hari 1: Kedatangan & Romansa Malioboro</div>
+                        <div class="itinerary-desc">Penjemputan di Bandara YIA atau Stasiun Tugu. Tur dimulai dengan mengunjungi Keraton Yogyakarta dan Tamansari Water Castle. Malam harinya menikmati makan malam eksklusif bernuansa klasik dekat area Malioboro.</div>
+                    </div>
+                    <div class="itinerary-step">
+                        <div class="itinerary-day">Hari 2: Kemegahan Candi & Merapi Adventure</div>
+                        <div class="itinerary-desc">Pagi hari menuju Kaliurang untuk petualangan seru Lava Tour Merapi menggunakan Jeep terbuka. Setelah makan siang, perjalanan dilanjutkan menuju Candi Prambanan yang megah hingga momen matahari terbenam.</div>
+                    </div>
+                    <div class="itinerary-step">
+                        <div class="itinerary-day">Hari 3: Wisata Belanja & Kepulangan</div>
+                        <div class="itinerary-desc">Mengunjungi pusat pembuatan batik tulis autentik dan kerajinan perak di Kotagede. Puas berbelanja oleh-oleh bakpia premium, tim kami akan mengantarkan Anda kembali menuju stasiun atau bandara.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="fasilitas">
+                <h3>Fasilitas Paket</h3>
+                <div style="display: grid; grid-template-columns: 1fr; gap: 20px;">
+                    <div>
+                        <h4 style="font-size: 15px; color: #1a2f27; margin-bottom: 15px;">Termasuk (Inclusions):</h4>
+                        <ul class="inclusion-list inc-yes">
+                            <li>Akomodasi Hotel Bintang 4 di pusat kota selama 2 malam</li>
+                            <li>Sewa Jeep eksklusif untuk paket Lava Tour Merapi</li>
+                            <li>Transportasi private ber-AC plus driver & BBM</li>
+                            <li>Tiket masuk terusan objek wisata tertera</li>
+                            <li>Makan pagi, siang, dan malam kuliner khas pilihan</li>
+                        </ul>
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <h4 style="font-size: 15px; color: #1a2f27; margin-bottom: 15px;">Tidak Termasuk (Exclusions):</h4>
+                        <ul class="inclusion-list inc-no">
+                            <li>Tiket transportasi menuju & dari kota Yogyakarta</li>
+                            <li>Biaya dokumentasi tambahan atau opsional guide lokal candi</li>
+                            <li>Pengeluaran pribadi lainnya</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div>
+            <div class="sidebar-booking" id="booking">
+                <div class="price-tag">Rp 2.450.000</div>
+                <span class="price-sub">per orang (Min. keberangkatan 2 orang)</span>
+                
+                <div class="sidebar-info">
+                    <span><i class="fa-regular fa-clock" style="color: #c5a880; margin-right: 5px;"></i> Durasi</span>
+                    <span>3 Hari 2 Malam</span>
+                </div>
+                <div class="sidebar-info">
+                    <span><i class="fa-solid fa-car" style="color: #c5a880; margin-right: 5px;"></i> Transportasi</span>
+                    <span>Private Car AC</span>
+                </div>
+                <div class="sidebar-info" style="border-bottom: none;">
+                    <span><i class="fa-solid fa-bed" style="color: #c5a880; margin-right: 5px;"></i> Penginapan</span>
+                    <span>Hotel Bintang 4</span>
+                </div>
+
+                <form class="booking-form-sidebar" onsubmit="prosesBooking(event)">
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap</label>
+                        <input type="text" id="nama" required placeholder="Nama Anda">
+                    </div>
+                    <div class="form-group">
+                        <label for="jumlah">Jumlah Peserta</label>
+                        <input type="number" id="jumlah" min="2" value="2" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggal">Rencana Keberangkatan</label>
+                        <input type="date" id="tanggal" required>
+                    </div>
+                    
+                    <input type="hidden" id="paket" value="Budaya & Sejarah Yogyakarta">
+
+                    <button type="submit" class="btn-book-sidebar">
+                        <i class="fa-brands fa-whatsapp" style="font-size: 18px;"></i> Pesan via WhatsApp
+                    </button>
+                    <p style="text-align: center; font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 15px;">
+                        Konsultasi gratis tanpa biaya komitmen.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid-container">
+            <div class="footer-info-block">
+                <div class="footer-logo">ZENITH-ADVENTOUR</div>
+                <p>Menyediakan layanan perjalanan wisata premium kelas utama ke berbagai daerah di Indonesia dengan kenyamanan dan aman terpercaya.</p>
+                <div class="footer-socials">
+                    <a href="#" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://wa.me/62895333841200" target="_blank" title="WhatsApp Admin"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-info-block">
+                <h3>Alamat Kantor</h3>
+                <p><i class="fa-solid fa-location-dot"></i> Jl. Cihampelas, Bandung, Jawa barat, Indonesia</p>
+                <p><i class="fa-solid fa-phone"></i> +62 89-5333-841-200</p>
+                <p><i class="fa-solid fa-envelope"></i> info@zenith-adventour.com</p>
+            </div>
+            <div class="footer-info-block">
+                <h3>Link Website</h3>
+                <a href="index.html"><i class="fa-solid fa-house"></i> Beranda Utama</a>
+                <a href="index.html#destinasi"><i class="fa-solid fa-chevron-right"></i> Paket Liburan Lainnya</a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 zenith-adventour Tour & Travel. Crafted for elegant journeys.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navContainer = document.getElementById('navContainer');
+            navContainer.classList.toggle('active');
+        }
+
+        function prosesBooking(event) {
+            event.preventDefault(); 
+            
+            const nama = document.getElementById('nama').value;
+            const jumlah = document.getElementById('jumlah').value;
+            const tanggal = document.getElementById('tanggal').value;
+            const paket = document.getElementById('paket').value; 
+
+            const templatePesan = `Halo Zenith Tour & Travel,
+
+Saya tertarik dan ingin menanyakan detail pemesanan tur berikut:
+*Nama Lengkap:* ${nama}
+*Paket Destinasi:* ${paket}
+*Jumlah Peserta:* ${jumlah} Orang
+*Rencana Tanggal:* ${tanggal}
+
+Mohon informasi ketersediaan dan langkah selanjutnya. Terima kasih!`;
+
+            const pesanValidURL = encodeURIComponent(templatePesan);
+            const nomorAdmin = "62895333841200"; 
+            
+            window.open(`https://wa.me/${nomorAdmin}?text=${pesanValidURL}`, '_blank');
+        }
+    </script>
+</body>
+</html>
