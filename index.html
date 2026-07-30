@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zenith Tour & Travel</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231a2f27'/><text x='50' y='70' font-size='60' font-family='Playfair Display, serif' font-weight='bold' fill='%23c5a880' text-anchor='middle'>Z</text></svg>">
+    
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -69,12 +71,15 @@
             border-left: 1px solid #e5e0d8;
             padding-left: 20px;
         }
-        .nav-socials a {
+        .nav-socials a, .nav-search-btn {
             color: #1a2f27;
             font-size: 18px;
             transition: color 0.3s, transform 0.3s;
+            background: none;
+            border: none;
+            cursor: pointer;
         }
-        .nav-socials a:hover {
+        .nav-socials a:hover, .nav-search-btn:hover {
             color: #c5a880;
             transform: scale(1.15);
         }
@@ -623,9 +628,6 @@
             border-radius: 4px;
         }
 
-        /* ==========================================
-           STYLING BARU UNTUK TESTIMONI SLIDER
-           ========================================== */
         .testimonials {
             padding: 100px 8%;
             background-color: #fcfbf7;
@@ -1248,7 +1250,7 @@
             align-items: center;
             gap: 8px;
             transition: color 0.3s;
-            margin-bottom: 8px; /* Menyesuaikan agar lurus dengan baseline teks */
+            margin-bottom: 8px;
         }
         .btn-see-all:hover {
             color: #1a2f27;
@@ -1259,6 +1261,95 @@
         }
         .btn-see-all:hover i {
             transform: translateX(5px);
+        }
+
+        .search-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(26, 47, 39, 0.92);
+            backdrop-filter: blur(8px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .search-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        .search-modal-content {
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+        .search-modal.active .search-modal-content {
+            transform: translateY(0);
+        }
+        .search-input-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .search-modal-input {
+            width: 100%;
+            padding: 20px 60px 20px 25px;
+            font-size: 20px;
+            font-family: 'Poppins', sans-serif;
+            background: #ffffff;
+            border: none;
+            border-radius: 50px;
+            outline: none;
+            color: #1a2f27;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .search-modal-input::placeholder {
+            color: #aaa;
+        }
+        .search-modal-submit {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #1a2f27;
+            color: #fff;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        .search-modal-submit:hover {
+            background: #c5a880;
+        }
+        .search-modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: #fff;
+            font-size: 28px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .search-modal-close:hover {
+            color: #c5a880;
+        }
+        .search-hint {
+            color: rgba(255,255,255,0.7);
+            font-size: 13px;
+            margin-top: 15px;
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
@@ -1274,11 +1365,12 @@
                 <li><a href="#" class="active">Beranda</a></li>
                 <li><a href="#destinasi">Destinasi</a></li>
                 <li><a href="gallery.html">Galeri</a></li>
-                <li><a href="#booking" class="btn-nav-book">Pesan Sekarang</a></li>
+                <li><a href="#" class="btn-nav-book" onclick="openSearchModal()"><i class="fa-solid fa-magnifying-glass"></i> Cari Sekarang</a></li>
             </ul>
             <div class="nav-socials">
                 <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                 <a href="https://tiktok.com" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
                 <a href="https://wa.me/62895333841200?text=Hallo%20admin%20saya%20mau%20bertanya%20tentang%20detail%20perjalanan" target="_blank" title="WhatsApp Admin"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
         </div>
@@ -1382,7 +1474,7 @@
         </div>
     </section>
 
-    <section class="destinations" id="destinasi">
+     <section class="destinations" id="destinasi">
         <div class="section-header-container">
             <div class="section-header-text">
                 <p class="section-subtitle">Pilihan Favorit</p>
@@ -1487,71 +1579,73 @@
     </section>
 
     <section class="rental-section" id="rental-kendaraan">
-        <p class="section-subtitle">Layanan Transportasi Ekstra</p>
-        <h2 class="section-title">Penyewaan Armada Premium</h2>
-        <p style="color: #666; max-width: 650px; margin: 0 auto; font-size: 15px;">Nikmati perjalanan yang privasi dan eksklusif dengan armada kendaraan prima kami, sudah termasuk pengemudi profesional yang siap memandu perjalanan Anda.</p>
+        <p class="section-subtitle">Layanan Transportasi Rombongan</p>
+        <h2 class="section-title">Penyewaan Armada Bus</h2>
+        <p style="color: #666; max-width: 650px; margin: 0 auto; font-size: 15px;">Sediakan kenyamanan maksimal untuk perjalanan tour grup dan perusahaan Anda dengan armada bus besar, sedang, dan bus kecil yang prima serta berfasilitas lengkap.</p>
         
         <div class="rental-grid">
+            <!-- Bus Besar -->
             <div class="rental-card">
-                <div class="rental-img" style="background-image: url('https://images.unsplash.com/photo-1771248647341-9d8f567b051d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8QWxwaGFyZHxlbnwwfHwwfHx8MA%3D%3D');">
-                    <span class="rental-tag">VIP Class</span>
+                <div class="rental-img" style="background-image: url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=500&auto=format&fit=crop&q=60');">
+                    <span class="rental-tag">Big Bus</span>
                 </div>
                 <div class="rental-content">
-                    <h3>Toyota Alphard</h3>
+                    <h3>Bus Besar (Big Bus)</h3>
                     <div class="rental-specs">
-                        <div class="rental-spec-item"><i class="fa-solid fa-users"></i> 5 - 6 Penumpang</div>
-                        <div class="rental-spec-item"><i class="fa-solid fa-suitcase"></i> 3 - 4 Bagasi</div>
-                        <div class="rental-spec-item"><i class="fa-solid fa-snowflake"></i> AC Premium</div>
-                        <div class="rental-spec-item"><i class="fa-solid fa-user-tie"></i> Termasuk Supir</div>
+                        <div class="rental-spec-item"><i class="fa-solid fa-users"></i> 45 - 59 Penumpang</div>
+                        <div class="rental-spec-item"><i class="fa-solid fa-suitcase"></i> Bagasi Luas</div>
+                        <div class="rental-spec-item"><i class="fa-solid fa-snowflake"></i> AC / Toilet / TV</div>
+                        <div class="rental-spec-item"><i class="fa-solid fa-user-tie"></i> Supir & Crew Pro</div>
                     </div>
                     <div class="rental-footer">
-                        <div class="rental-price">Rp 2.500.000 <span>/ hari</span></div>
-                        <a href="https://wa.me/62895333841200?text=Halo%20Admin%20Zenith,%20saya%20tertarik%20untuk%20menyewa%20Toyota%20Alphard." target="_blank" class="btn-rental">Sewa</a>
+                        <div class="rental-price">Rp 3.500.000 <span>/ hari</span></div>
+                        <a href="https://wa.me/62895333841200?text=Halo%20Admin%20Zenith,%20saya%20tertarik%20untuk%20menyewa%20Bus%20Besar%20(Big%20Bus)." target="_blank" class="btn-rental">Sewa</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Bus Sedang -->
             <div class="rental-card">
-                <div class="rental-img" style="background-image: url('https://images.unsplash.com/photo-1611651338412-8403fa6e3599?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cG9yY2hlJTIwOTExfGVufDB8fDB8fHww');">
-                    <span class="rental-tag">Family Class</span>
+                <div class="rental-img" style="background-image: url('https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=500&auto=format&fit=crop&q=60');">
+                    <span class="rental-tag">Medium Bus</span>
                 </div>
                 <div class="rental-content">
-                    <h3>Innova Zenix</h3>
+                    <h3>Bus Sedang (Medium Bus)</h3>
                     <div class="rental-specs">
-                        <div class="rental-spec-item"><i class="fa-solid fa-users"></i> 6 - 7 Penumpang</div>
-                        <div class="rental-spec-item"><i class="fa-solid fa-suitcase"></i> 3 - 4 Bagasi</div>
-                        <div class="rental-spec-item"><i class="fa-solid fa-snowflake"></i> Full AC</div>
+                        <div class="rental-spec-item"><i class="fa-solid fa-users"></i> 31 - 35 Penumpang</div>
+                        <div class="rental-spec-item"><i class="fa-solid fa-suitcase"></i> Bagasi Standar</div>
+                        <div class="rental-spec-item"><i class="fa-solid fa-snowflake"></i> AC / Karaoke / TV</div>
                         <div class="rental-spec-item"><i class="fa-solid fa-user-tie"></i> Termasuk Supir</div>
                     </div>
                     <div class="rental-footer">
-                        <div class="rental-price">Rp 1.200.000 <span>/ hari</span></div>
-                        <a href="https://wa.me/62895333841200?text=Halo%20Admin%20Zenith,%20saya%20tertarik%20untuk%20menyewa%20Innova%20Zenix." target="_blank" class="btn-rental">Sewa</a>
+                        <div class="rental-price">Rp 2.400.000 <span>/ hari</span></div>
+                        <a href="https://wa.me/62895333841200?text=Halo%20Admin%20Zenith,%20saya%20tertarik%20untuk%20menyewa%20Bus%20Sedang%20(Medium%20Bus)." target="_blank" class="btn-rental">Sewa</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Bus Kecil -->
             <div class="rental-card">
-                <div class="rental-img" style="background-image: url('https://images.unsplash.com/photo-1631930998583-72cddce04c69?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fFRveW90YSUyMEhpYWNlJTIwUHJlbWlvfGVufDB8fDB8fHww');">
-                    <span class="rental-tag">Group Class</span>
+                <div class="rental-img" style="background-image: url('https://images.unsplash.com/photo-1631930998583-72cddce04c69?w=500&auto=format&fit=crop&q=60');">
+                    <span class="rental-tag">Mini Bus / Elf</span>
                 </div>
                 <div class="rental-content">
-                    <h3>Toyota Hiace Premio</h3>
+                    <h3>Bus Kecil (Micro Bus)</h3>
                     <div class="rental-specs">
-                        <div class="rental-spec-item"><i class="fa-solid fa-users"></i> 11 - 14 Penumpang</div>
-                        <div class="rental-spec-item"><i class="fa-solid fa-suitcase"></i> 5+ Bagasi</div>
-                        <div class="rental-spec-item"><i class="fa-solid fa-snowflake"></i> Full AC</div>
+                        <div class="rental-spec-item"><i class="fa-solid fa-users"></i> 14 - 19 Penumpang</div>
+                        <div class="rental-spec-item"><i class="fa-solid fa-suitcase"></i> Bagasi Bagus</div>
+                        <div class="rental-spec-item"><i class="fa-solid fa-snowflake"></i> Full AC / Audio</div>
                         <div class="rental-spec-item"><i class="fa-solid fa-user-tie"></i> Termasuk Supir</div>
                     </div>
                     <div class="rental-footer">
-                        <div class="rental-price">Rp 1.800.000 <span>/ hari</span></div>
-                        <a href="https://wa.me/62895333841200?text=Halo%20Admin%20Zenith,%20saya%20tertarik%20untuk%20menyewa%20Toyota%20Hiace%20Premio." target="_blank" class="btn-rental">Sewa</a>
+                        <div class="rental-price">Rp 1.600.000 <span>/ hari</span></div>
+                        <a href="https://wa.me/62895333841200?text=Halo%20Admin%20Zenith,%20saya%20tertarik%20untuk%20menyewa%20Bus%20Kecil%20(Micro%20Bus)." target="_blank" class="btn-rental">Sewa</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION TESTIMONI SLIDER BARU -->
     <section class="testimonials" id="testimoni">
         <div class="section-header-container">
             <div class="section-header-text">
@@ -1562,7 +1656,6 @@
         </div>
         
         <div class="testi-slider-container">
-            <!-- Testimoni 1 -->
             <div class="testimonial-slide active">
                 <div class="testimonial-card">
                     <div class="testimonial-proof">
@@ -1584,7 +1677,6 @@
                 </div>
             </div>
 
-            <!-- Testimoni 2 -->
             <div class="testimonial-slide">
                 <div class="testimonial-card">
                     <div class="testimonial-proof">
@@ -1606,7 +1698,6 @@
                 </div>
             </div>
 
-            <!-- Testimoni 3 -->
             <div class="testimonial-slide">
                 <div class="testimonial-card">
                     <div class="testimonial-proof">
@@ -1689,6 +1780,17 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+            <span class="search-modal-close" onclick="closeSearchModal()">&times;</span>
+            <div class="search-input-wrapper">
+                <input type="text" id="searchInput" class="search-modal-input" placeholder="Cari destinasi, hotel, atau aktivitas..." onkeypress="handleSearchEnter(event)">
+                <button class="search-modal-submit" onclick="executeSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <p class="search-hint">Tekan <b>Enter</b> atau klik ikon kaca pembesar untuk mulai mencari.</p>
         </div>
     </div>
 
@@ -2025,16 +2127,53 @@
             }, 350);
         }
 
+        function openSearchModal() {
+            const modal = document.getElementById('searchModal');
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.classList.add('active');
+                document.getElementById('searchInput').focus();
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSearchModal() {
+            const modal = document.getElementById('searchModal');
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+            document.body.style.overflow = 'auto';
+        }
+
+        function executeSearch() {
+            const keyword = document.getElementById('searchInput').value.trim();
+            if (keyword !== "") {
+                window.location.href = `search.html?q=${encodeURIComponent(keyword)}`;
+            }
+        }
+
+        function handleSearchEnter(event) {
+            if (event.key === 'Enter') {
+                executeSearch();
+            }
+        }
+
         window.addEventListener('click', function(event) {
             const modal = document.getElementById('detailModal');
+            const searchModal = document.getElementById('searchModal');
             if (event.target === modal) {
                 closeDetailModal();
+            }
+            if (event.target === searchModal) {
+                closeSearchModal();
             }
         });
 
         window.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeDetailModal();
+                closeSearchModal();
             }
         });
 
@@ -2060,9 +2199,6 @@ Mohon jelaskan benefit apa saja yang saya dapatkan. Terima kasih!`;
             window.open(`https://wa.me/${nomorAdmin}?text=${pesanValidURL}`, '_blank');
         }
 
-        // ==========================================
-        //  SISTEM SLIDER DESTINASI POPULER (CAROUSEL)
-        // ==========================================
         const track = document.getElementById('destSliderTrack');
         const sliderContainer = document.getElementById('destSliderContainer');
         const slides = Array.from(track.children);
@@ -2225,9 +2361,6 @@ Mohon jelaskan benefit apa saja yang saya dapatkan. Terima kasih!`;
             }
         }, true); 
 
-        // ==========================================
-        //  SISTEM TESTIMONI FADE SLIDER
-        // ==========================================
         let currentTestiIndex = 0;
         const testiSlidesEl = Array.from(document.querySelectorAll('.testimonial-slide'));
         const testiDots = Array.from(document.querySelectorAll('#testiSliderDots .slider-dot'));
@@ -2264,7 +2397,6 @@ Mohon jelaskan benefit apa saja yang saya dapatkan. Terima kasih!`;
             showTestimonial(index);
         }
 
-        // Auto slide testimoni setiap 6 detik
         let testiInterval = setInterval(testiNext, 6000);
 
         const testiContainer = document.querySelector('.testi-slider-container');
@@ -2273,9 +2405,6 @@ Mohon jelaskan benefit apa saja yang saya dapatkan. Terima kasih!`;
             testiContainer.addEventListener('mouseleave', () => testiInterval = setInterval(testiNext, 6000));
         }
 
-        // ==========================================
-        // SISTEM ELEGANT COUNTDOWN TIMER
-        // ==========================================
         const targetDate = new Date("2026-07-07T07:00:00").getTime(); 
 
         function updateCountdown() {
@@ -2301,9 +2430,6 @@ Mohon jelaskan benefit apa saja yang saya dapatkan. Terima kasih!`;
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // ==========================================
-        //  SISTEM ROTASI BG HERO (SLIDESHOW)
-        // ==========================================
         let currentHeroBgIndex = 0;
         const heroBgSlides = Array.from(document.querySelectorAll('.hero-bg-slide'));
 
